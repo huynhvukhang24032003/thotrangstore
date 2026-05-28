@@ -1,0 +1,401 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ShopWebApp.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ShopWebApp.bundle.scp.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\css\\admin.css",
+      "PackagePath": "staticwebassets\\css\\admin.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\02aff646-2d1d-46e8-8832-d9be3e987dac.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\02aff646-2d1d-46e8-8832-d9be3e987dac.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\09b41929-a94c-4ee6-9132-3e88894ca04f.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\09b41929-a94c-4ee6-9132-3e88894ca04f.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\0df115e0-2a80-4f4a-b8f1-9415e0b71535.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\0df115e0-2a80-4f4a-b8f1-9415e0b71535.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\2986a96a-9e59-4cc6-80b4-3582f99367ba.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\2986a96a-9e59-4cc6-80b4-3582f99367ba.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\3182a011-9239-4268-98f2-7a0909d2d6be.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\3182a011-9239-4268-98f2-7a0909d2d6be.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\38b6aab4-0332-49c7-973b-e40c88d361a6.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\38b6aab4-0332-49c7-973b-e40c88d361a6.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\3adb91e7-6a79-40c1-835f-002fa8b347be.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\3adb91e7-6a79-40c1-835f-002fa8b347be.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\4577ffe2-44e3-43a3-9a78-4b8436ac5812.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\4577ffe2-44e3-43a3-9a78-4b8436ac5812.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\4cec133c-36a3-4b28-8e0a-cd16a337e1ae.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\4cec133c-36a3-4b28-8e0a-cd16a337e1ae.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\60f96b26-4279-426b-88ca-eff94b5b37a0.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\60f96b26-4279-426b-88ca-eff94b5b37a0.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\65aa22d6-7620-4733-81c5-06162981be14.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\65aa22d6-7620-4733-81c5-06162981be14.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\6e2d2efa-36ec-4a56-b73a-cb070c37fc15.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\6e2d2efa-36ec-4a56-b73a-cb070c37fc15.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\713525ac-b22d-4226-801f-8cd04224fcdf.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\713525ac-b22d-4226-801f-8cd04224fcdf.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\71790fb4-5b3f-4bfb-9ce0-ba305d565ddc.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\71790fb4-5b3f-4bfb-9ce0-ba305d565ddc.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\72435c5f-7c5b-4956-ba5d-3e2bb989191c.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\72435c5f-7c5b-4956-ba5d-3e2bb989191c.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\788547b9-e686-45fc-b944-c5b6dc7d5da7.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\788547b9-e686-45fc-b944-c5b6dc7d5da7.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\89feb18e-b93f-490a-90fa-d21b4d9fe17c.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\89feb18e-b93f-490a-90fa-d21b4d9fe17c.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\8d2c11a2-c9e8-4b26-a0a7-24f3bd9ce99f.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\8d2c11a2-c9e8-4b26-a0a7-24f3bd9ce99f.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\92affac5-2770-4178-a9c1-d3abf4cd99a4.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\92affac5-2770-4178-a9c1-d3abf4cd99a4.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\94af8901-b8e8-4fa8-8040-d85b4841f380.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\94af8901-b8e8-4fa8-8040-d85b4841f380.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\98c2246f-6130-4b8d-8c7c-bec47d54bd41.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\98c2246f-6130-4b8d-8c7c-bec47d54bd41.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\ace82d1e-26e4-4901-86d8-b4061750e032.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\ace82d1e-26e4-4901-86d8-b4061750e032.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\ad14bedc-a76d-4df8-b3f0-6af1b07eb26f.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\ad14bedc-a76d-4df8-b3f0-6af1b07eb26f.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\b9e91507-d3cc-43a1-ba08-9fca211f2be9.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\b9e91507-d3cc-43a1-ba08-9fca211f2be9.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\c7ff0820-5d34-418a-93b4-8e55fa93bbef.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\c7ff0820-5d34-418a-93b4-8e55fa93bbef.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\c917da4d-49f2-427b-96fc-19cbcf0f10ed.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\c917da4d-49f2-427b-96fc-19cbcf0f10ed.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\c9f387dc-5dec-4d18-865f-4eecc74c8134.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\c9f387dc-5dec-4d18-865f-4eecc74c8134.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\d5a585a4-832a-4c64-9a4d-7df53260342e.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\d5a585a4-832a-4c64-9a4d-7df53260342e.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\eb5617e6-358e-431e-b0e1-90b05587cb4a.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\eb5617e6-358e-431e-b0e1-90b05587cb4a.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\eff51031-2f63-4955-91a6-fb1fdebec9b6.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\eff51031-2f63-4955-91a6-fb1fdebec9b6.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\f99a93af-ad1d-4caf-8fbf-6b57c54bbe48.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\f99a93af-ad1d-4caf-8fbf-6b57c54bbe48.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\images\\products\\fafb4037-5777-42e8-b2e9-751f422c4db5.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\fafb4037-5777-42e8-b2e9-751f422c4db5.jpg"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "E:\\Project NET\\ShopWebApp\\wwwroot\\uploads\\659f6504-e946-428a-bb1b-359e230bc3ca.png",
+      "PackagePath": "staticwebassets\\uploads\\659f6504-e946-428a-bb1b-359e230bc3ca.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ShopWebApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ShopWebApp.props",
+      "PackagePath": "build\\ShopWebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ShopWebApp.props",
+      "PackagePath": "buildMultiTargeting\\ShopWebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ShopWebApp.props",
+      "PackagePath": "buildTransitive\\ShopWebApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

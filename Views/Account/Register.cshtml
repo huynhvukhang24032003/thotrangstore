@@ -1,0 +1,117 @@
+@model ShopWebApp.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Đăng ký tài khoản";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm border-0 mt-4">
+            <div class="card-body p-4">
+                <h3 class="card-title text-center mb-4 fw-bold">
+                    <i class="bi bi-person-plus me-2 text-primary"></i>Đăng ký
+                </h3>
+
+                <form asp-action="Register" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label fw-semibold"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person"></i></span>
+                            <input asp-for="FullName" class="form-control" placeholder="Nguyễn Văn A" />
+                        </div>
+                        <span asp-validation-for="FullName" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-semibold"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input asp-for="Email" class="form-control" placeholder="email@example.com" />
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Phone" class="form-label fw-semibold"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-phone"></i></span>
+                            <input asp-for="Phone" class="form-control" placeholder="0912345678" />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label fw-semibold"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                            <input asp-for="Password" class="form-control" placeholder="Tối thiểu 6 ký tự" />
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="ConfirmPassword" class="form-label fw-semibold"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                            <input asp-for="ConfirmPassword" class="form-control" placeholder="Nhập lại mật khẩu" />
+                        </div>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-person-check me-2"></i>Đăng ký
+                        </button>
+                    </div>
+                </form>
+
+                @if (ViewBag.AnyOAuthEnabled == true)
+                {
+                    <hr />
+                    <div class="text-center mb-3">
+                        <small class="text-muted">Hoặc đăng ký bằng</small>
+                    </div>
+                    <div class="d-grid gap-2">
+                        @if (ViewBag.GoogleEnabled == true)
+                        {
+                            <form asp-action="ExternalLogin" method="post">
+                                <input type="hidden" name="provider" value="Google" />
+                                <button type="submit" class="btn btn-outline-danger w-100">
+                                    <i class="bi bi-google me-2"></i>Đăng ký bằng Google
+                                </button>
+                            </form>
+                        }
+                        @if (ViewBag.FacebookEnabled == true)
+                        {
+                            <form asp-action="ExternalLogin" method="post">
+                                <input type="hidden" name="provider" value="Facebook" />
+                                <button type="submit" class="btn btn-outline-primary w-100">
+                                    <i class="bi bi-facebook me-2"></i>Đăng ký bằng Facebook
+                                </button>
+                            </form>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <hr />
+                    <div class="alert alert-info d-flex align-items-start gap-2 mb-0 py-2" role="alert">
+                        <i class="bi bi-info-circle-fill mt-1 flex-shrink-0"></i>
+                        <small>
+                            Đăng ký qua <strong>Google / Facebook</strong> chưa được cấu hình.
+                            Vui lòng thêm credentials vào <code>appsettings.json</code> để kích hoạt.
+                        </small>
+                    </div>
+                }
+
+                <p class="text-center mt-3 mb-0">
+                    Đã có tài khoản? <a asp-action="Login" class="fw-semibold">Đăng nhập</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

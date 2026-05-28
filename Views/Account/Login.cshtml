@@ -1,0 +1,102 @@
+@model ShopWebApp.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5 col-lg-4">
+        <div class="card shadow-sm border-0 mt-4">
+            <div class="card-body p-4">
+                <h3 class="card-title text-center mb-4 fw-bold">
+                    <i class="bi bi-box-arrow-in-right me-2 text-primary"></i>Đăng nhập
+                </h3>
+
+                <form asp-action="Login" method="post">
+                    <input type="hidden" asp-for="ReturnUrl" />
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-semibold"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input asp-for="Email" class="form-control" placeholder="email@example.com" autofocus />
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Password" class="form-label fw-semibold"></label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                            <input asp-for="Password" class="form-control" placeholder="Mật khẩu" />
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3 d-flex justify-content-between align-items-center">
+                        <div class="form-check">
+                            <input asp-for="RememberMe" class="form-check-input" />
+                            <label asp-for="RememberMe" class="form-check-label">Ghi nhớ</label>
+                        </div>
+                    </div>
+
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập
+                        </button>
+                    </div>
+                </form>
+
+                @if (ViewBag.AnyOAuthEnabled == true)
+                {
+                    <hr />
+                    <div class="text-center mb-3">
+                        <small class="text-muted">Hoặc đăng nhập bằng</small>
+                    </div>
+                    <div class="d-grid gap-2">
+                        @if (ViewBag.GoogleEnabled == true)
+                        {
+                            <form asp-action="ExternalLogin" method="post">
+                                <input type="hidden" name="provider" value="Google" />
+                                <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                                <button type="submit" class="btn btn-outline-danger w-100">
+                                    <i class="bi bi-google me-2"></i>Đăng nhập bằng Google
+                                </button>
+                            </form>
+                        }
+                        @if (ViewBag.FacebookEnabled == true)
+                        {
+                            <form asp-action="ExternalLogin" method="post">
+                                <input type="hidden" name="provider" value="Facebook" />
+                                <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                                <button type="submit" class="btn btn-outline-primary w-100">
+                                    <i class="bi bi-facebook me-2"></i>Đăng nhập bằng Facebook
+                                </button>
+                            </form>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <hr />
+                    <div class="alert alert-info d-flex align-items-start gap-2 mb-0 py-2" role="alert">
+                        <i class="bi bi-info-circle-fill mt-1 flex-shrink-0"></i>
+                        <small>
+                            Đăng nhập qua <strong>Google / Facebook</strong> chưa được cấu hình.
+                            Vui lòng thêm <code>ClientId</code> &amp; <code>ClientSecret</code>
+                            vào <code>appsettings.json</code> để kích hoạt.
+                        </small>
+                    </div>
+                }
+
+                <p class="text-center mt-3 mb-0">
+                    Chưa có tài khoản? <a asp-action="Register" class="fw-semibold">Đăng ký ngay</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

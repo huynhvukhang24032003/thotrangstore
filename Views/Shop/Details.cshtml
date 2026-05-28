@@ -1,0 +1,177 @@
+@using ShopWebApp.Data
+@inject AppDbContext _context
+@model ShopWebApp.Models.Product
+@{
+    ViewData["Title"] = Model.Name;
+    ViewData["SeoDescription"] = !string.IsNullOrEmpty(Model.Description) ? Model.Description.Length > 160 ? Model.Description.Substring(0, 157) + "..." : Model.Description : Model.Name;
+    ViewData["SeoKeywords"] = $"{Model.Name}, {Model.Category?.Name}, mua {Model.Name}";
+    var related = ViewBag.RelatedProducts as List<ShopWebApp.Models.Product> ?? new();
+    var setting = _context.SystemSettings.FirstOrDefault();
+    bool requireLogin = setting?.RequireLoginToPurchase ?? true;
+}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-controller="Home" asp-action="Index" class="text-decoration-none">Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-controller="Shop" asp-action="Index"
+               asp-route-categoryId="@Model.CategoryId"
+               class="text-decoration-none">@Model.Category?.Name</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+    </ol>
+</nav>
+
+<!-- Chi tiết sản phẩm -->
+<div class="row g-4 mb-5">
+    <!-- Ảnh sản phẩm -->
+    <div class="col-md-5">
+        <div class="card border-0 shadow-sm">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" class="card-img-top rounded-3 bg-light" alt="@Model.Name"
+                     style="height: 400px; object-fit: contain;" />
+            }
+            else
+            {
+                <div class="card-img-top rounded-3 d-flex align-items-center justify-content-center bg-light"
+                     style="height: 400px;">
+                    <i class="bi bi-image fs-1 text-muted opacity-50"></i>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Thông tin sản phẩm -->
+    <div class="col-md-7">
+        <span class="badge bg-primary-subtle text-primary mb-2">@Model.Category?.Name</span>
+        <h2 class="fw-bold mb-2">@Model.Name</h2>
+
+        <div class="d-flex align-items-center gap-3 mb-3">
+            <span class="fs-3 fw-bold text-primary">@string.Format("{0:N0} ₫", Model.Price)</span>
+            @if (Model.Stock > 0)
+            {
+                <span class="badge bg-success fs-6">
+                    <i class="bi bi-check-circle me-1"></i>Còn @Model.Stock sản phẩm
+                </span>
+            }
+            else
+            {
+                <span class="badge bg-danger fs-6">
+                    <i class="bi bi-x-circle me-1"></i>Hết hàng
+                </span>
+            }
+        </div>
+
+        <hr />
+
+        @if (!string.IsNullOrEmpty(Model.Description))
+        {
+            <div class="mb-4">
+                <h6 class="fw-semibold mb-2">Mô tả sản phẩm</h6>
+                <p class="text-muted lh-lg">@Model.Description</p>
+            </div>
+        }
+
+        <!-- Nút hành động -->
+        <div class="d-grid gap-2 d-md-flex">
+            @if (requireLogin && User.Identity?.IsAuthenticated != true)
+            {
+                <a asp-controller="Account" asp-action="Login" class="btn btn-primary btn-lg">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập để mua
+                </a>
+            }
+            else
+            {
+                @if (Model.Stock > 0)
+                {
+                    <form asp-controller="Cart" asp-action="Add" method="post" class="d-flex gap-2 flex-grow-1">
+                        <input type="hidden" name="productId" value="@Model.Id" />
+                        <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                        <button type="submit" class="btn btn-primary btn-lg flex-grow-1">
+                            <i class="bi bi-cart-plus me-2"></i>Thêm vào giỏ
+                        </button>
+                    </form>
+                    <a asp-controller="Cart" asp-action="Index" class="btn btn-outline-success btn-lg">
+                        <i class="bi bi-bag-check me-1"></i>Xem giỏ hàng
+                    </a>
+                }
+                else
+                {
+                    <button class="btn btn-secondary btn-lg" disabled>
+                        <i class="bi bi-x-circle me-2"></i>Hết hàng
+                    </button>
+                }
+            }
+        </div>
+
+        <!-- Thông tin thêm -->
+        <div class="mt-4 p-3 bg-light rounded-3">
+            <div class="row g-2 text-center small">
+                <div class="col-4">
+                    <i class="bi bi-truck text-primary fs-5 d-block mb-1"></i>
+                    <span class="text-muted">Giao hàng toàn quốc</span>
+                </div>
+                <div class="col-4">
+                    <i class="bi bi-shield-check text-primary fs-5 d-block mb-1"></i>
+                    <span class="text-muted">Bảo hành chính hãng</span>
+                </div>
+                <div class="col-4">
+                    <i class="bi bi-arrow-counterclockwise text-primary fs-5 d-block mb-1"></i>
+                    <span class="text-muted">Đổi trả 7 ngày</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sản phẩm liên quan -->
+@if (related.Any())
+{
+    <section>
+        <h5 class="fw-bold mb-3">
+            <i class="bi bi-grid me-2 text-primary"></i>Sản phẩm liên quan
+        </h5>
+        <div class="row g-3">
+            @foreach (var p in related)
+            {
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="card h-100 border-0 shadow-sm product-card">
+                        <a asp-controller="Shop" asp-action="Details" asp-route-id="@p.Id">
+                            @if (!string.IsNullOrEmpty(p.ImageUrl))
+                            {
+                                <img src="@p.ImageUrl" class="card-img-top product-img-sm" alt="@p.Name" />
+                            }
+                            else
+                            {
+                                <div class="card-img-top product-img-sm d-flex align-items-center justify-content-center bg-light">
+                                    <i class="bi bi-image fs-2 text-muted"></i>
+                                </div>
+                            }
+                        </a>
+                        <div class="card-body p-3">
+                            <h6 class="card-title fw-semibold mb-1 small lh-sm">
+                                <a asp-controller="Shop" asp-action="Details" asp-route-id="@p.Id"
+                                   class="text-decoration-none text-dark">
+                                    @p.Name
+                                </a>
+                            </h6>
+                            <p class="text-primary fw-bold mb-0 small">@string.Format("{0:N0} ₫", p.Price)</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+}
+
+@section Styles {
+    <style>
+        .product-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.12) !important; }
+        .product-img-sm { height: 150px; object-fit: contain; background-color: #f8f9fa; }
+    </style>
+}

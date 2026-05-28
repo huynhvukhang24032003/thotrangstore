@@ -1,0 +1,103 @@
+@model List<ShopWebApp.Models.Order>
+@{
+    ViewData["Title"] = "Quản lý Đơn hàng";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-0"><i class="bi bi-receipt me-2"></i>Quản lý đơn hàng</h4>
+</div>
+
+<!-- Filter -->
+<form method="get" class="row g-2 mb-4">
+    <div class="col-md-5">
+        <input type="text" name="search" value="@ViewBag.Search" class="form-control"
+               placeholder="Tìm tên hoặc email khách hàng..." />
+    </div>
+    <div class="col-md-4">
+        <select name="status" class="form-select">
+            <option value="">-- Tất cả trạng thái --</option>
+            @foreach (var s in Enum.GetValues<ShopWebApp.Models.OrderStatus>())
+            {
+                var statusLabel = s switch
+                {
+                    ShopWebApp.Models.OrderStatus.Pending => "Chờ xử lý",
+                    ShopWebApp.Models.OrderStatus.Processing => "Đang xử lý",
+                    ShopWebApp.Models.OrderStatus.Shipping => "Đang giao",
+                    ShopWebApp.Models.OrderStatus.Completed => "Hoàn thành",
+                    ShopWebApp.Models.OrderStatus.Cancelled => "Đã hủy",
+                    _ => s.ToString()
+                };
+                <option value="@s" selected="@(ViewBag.Status?.ToString() == s.ToString())">@statusLabel</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-3 d-flex gap-2">
+        <button type="submit" class="btn btn-outline-primary flex-grow-1">
+            <i class="bi bi-search me-1"></i>Lọc
+        </button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Reset</a>
+    </div>
+</form>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Khách hàng</th>
+                        <th>Tổng tiền</th>
+                        <th>Thanh toán</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày đặt</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        var (bc, lbl) = order.Status switch
+                        {
+                            ShopWebApp.Models.OrderStatus.Pending => ("warning", "Chờ xử lý"),
+                            ShopWebApp.Models.OrderStatus.Processing => ("info", "Đang xử lý"),
+                            ShopWebApp.Models.OrderStatus.Shipping => ("primary", "Đang giao"),
+                            ShopWebApp.Models.OrderStatus.Completed => ("success", "Hoàn thành"),
+                            ShopWebApp.Models.OrderStatus.Cancelled => ("danger", "Đã hủy"),
+                            _ => ("secondary", "?")
+                        };
+                        <tr>
+                            <td>#@order.Id</td>
+                            <td>
+                                <div class="fw-semibold">
+                                    @(order.User?.FullName ?? order.GuestName)
+                                    @if (order.UserId == null)
+                                    {
+                                        <span class="badge bg-secondary ms-1 fw-normal" style="font-size: 0.7em;">Khách vãng lai</span>
+                                    }
+                                </div>
+                                <small class="text-muted">@(order.User?.Email ?? order.GuestEmail)</small>
+                            </td>
+                            <td class="fw-bold text-primary">@string.Format("{0:N0} ₫", order.TotalAmount)</td>
+                            <td>
+                                @(order.PaymentMethod == ShopWebApp.Models.PaymentMethod.COD ? "COD" : order.PaymentMethod.ToString())
+                            </td>
+                            <td><span class="badge bg-@bc">@lbl</span></td>
+                            <td>@order.CreatedAt.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@order.Id"
+                                   class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-eye me-1"></i>Chi tiết
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                    @if (!Model.Any())
+                    {
+                        <tr><td colspan="7" class="text-center text-muted py-4">Không có đơn hàng nào</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

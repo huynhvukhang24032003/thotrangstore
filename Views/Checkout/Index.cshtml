@@ -1,0 +1,118 @@
+@model ShopWebApp.ViewModels.CheckoutViewModel
+@{
+    ViewData["Title"] = "Đặt hàng";
+}
+
+<div class="row g-4">
+    <div class="col-lg-7">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h5 class="fw-bold mb-4"><i class="bi bi-truck me-2 text-primary"></i>Thông tin giao hàng</h5>
+
+                <form asp-action="PlaceOrder" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="GuestName" class="form-label fw-semibold"></label>
+                            <input asp-for="GuestName" class="form-control" placeholder="Nhập họ và tên" />
+                            <span asp-validation-for="GuestName" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="GuestPhone" class="form-label fw-semibold"></label>
+                            <input asp-for="GuestPhone" class="form-control" placeholder="Nhập số điện thoại" />
+                            <span asp-validation-for="GuestPhone" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="GuestEmail" class="form-label fw-semibold"></label>
+                        <input asp-for="GuestEmail" type="email" class="form-control" placeholder="Nhập email (tùy chọn)" />
+                        <span asp-validation-for="GuestEmail" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ShippingAddress" class="form-label fw-semibold"></label>
+                        <textarea asp-for="ShippingAddress" class="form-control" rows="3"
+                                  placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố"></textarea>
+                        <span asp-validation-for="ShippingAddress" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Note" class="form-label fw-semibold"></label>
+                        <textarea asp-for="Note" class="form-control" rows="2"
+                                  placeholder="Ghi chú cho người giao hàng (tùy chọn)"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Phương thức thanh toán</label>
+                        <div class="d-flex flex-column gap-2">
+                            <div class="form-check border rounded p-3">
+                                <input class="form-check-input" type="radio" asp-for="PaymentMethod"
+                                       value="COD" id="payCOD" checked />
+                                <label class="form-check-label fw-semibold" for="payCOD">
+                                    <i class="bi bi-cash-coin me-2 text-success"></i>
+                                    Thanh toán khi nhận hàng (COD)
+                                </label>
+                            </div>
+                            <div class="form-check border rounded p-3">
+                                <input class="form-check-input" type="radio" asp-for="PaymentMethod"
+                                       value="SePay" id="paySePay" />
+                                <label class="form-check-label fw-semibold" for="paySePay">
+                                    <i class="bi bi-qr-code me-2 text-primary"></i>
+                                    Chuyển khoản qua SePay
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-bag-check me-2"></i>Đặt hàng ngay
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom fw-bold">
+                <i class="bi bi-receipt me-2"></i>Đơn hàng của bạn
+            </div>
+            <div class="card-body p-0">
+                @foreach (var item in Model.CartItems)
+                {
+                    <div class="d-flex align-items-center gap-3 p-3 border-bottom">
+                        @if (!string.IsNullOrEmpty(item.Product?.ImageUrl))
+                        {
+                            <img src="@item.Product.ImageUrl" width="50" height="50"
+                                 class="rounded object-fit-cover" />
+                        }
+                        <div class="flex-grow-1">
+                            <div class="fw-semibold small">@item.Product?.Name</div>
+                            <div class="text-muted small">x @item.Quantity</div>
+                        </div>
+                        <div class="fw-bold text-primary">
+                            @string.Format("{0:N0} ₫", (item.Product?.Price ?? 0) * item.Quantity)
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="card-footer bg-white">
+                <div class="d-flex justify-content-between fw-bold fs-5">
+                    <span>Tổng cộng</span>
+                    <span class="text-primary">@string.Format("{0:N0} ₫", Model.TotalAmount)</span>
+                </div>
+            </div>
+        </div>
+        <a asp-controller="Cart" asp-action="Index" class="btn btn-outline-secondary mt-3 w-100">
+            <i class="bi bi-arrow-left me-1"></i>Quay lại giỏ hàng
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

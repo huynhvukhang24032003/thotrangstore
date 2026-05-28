@@ -1,0 +1,85 @@
+@model ShopWebApp.Models.Product
+@{
+    ViewData["Title"] = "Sửa sản phẩm";
+    var isEdit = true;
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom">
+                <h5 class="mb-0 fw-bold">
+                    <i class="bi bi-pencil me-2"></i>Sửa sản phẩm
+                </h5>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="Id" />
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label asp-for="Name" class="form-label fw-semibold"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Tên sản phẩm" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="CategoryId" class="form-label fw-semibold">Danh mục</label>
+                            <select asp-for="CategoryId" asp-items="ViewBag.CategoryId" class="form-select">
+                                <option value="">-- Chọn danh mục --</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Price" class="form-label fw-semibold"></label>
+                            <div class="input-group">
+                                <input asp-for="Price" class="form-control" placeholder="0" />
+                                <span class="input-group-text">₫</span>
+                            </div>
+                            <span asp-validation-for="Price" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Stock" class="form-label fw-semibold"></label>
+                            <input asp-for="Stock" class="form-control" placeholder="0" />
+                            <span asp-validation-for="Stock" class="text-danger small"></span>
+                        </div>
+                        <div class="col-12">
+                            <label asp-for="Description" class="form-label fw-semibold"></label>
+                            <textarea asp-for="Description" class="form-control" rows="4"
+                                      placeholder="Mô tả chi tiết sản phẩm"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Ảnh sản phẩm</label>
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <div class="mb-2">
+                                    <img src="@Model.ImageUrl" width="120" height="120"
+                                         class="rounded object-fit-cover border" />
+                                    <p class="small text-muted mt-1">Ảnh hiện tại. Upload ảnh mới để thay thế.</p>
+                                </div>
+                            }
+                            <input type="file" name="imageFile" class="form-control" accept="image/*" />
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input asp-for="IsActive" class="form-check-input" />
+                                <label asp-for="IsActive" class="form-check-label fw-semibold">Hiển thị sản phẩm</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-lg me-1"></i>Cập nhật
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-secondary">Hủy</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

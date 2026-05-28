@@ -1,0 +1,120 @@
+@using ShopWebApp.Data
+@inject AppDbContext _context
+@model List<ShopWebApp.Models.Product>
+@{
+    var setting = _context.SystemSettings.FirstOrDefault();
+    ViewData["Title"] = "Trang chủ";
+    bool requireLogin = setting?.RequireLoginToPurchase ?? true;
+}
+
+<!-- Hero Banner -->
+<section class="py-5 bg-primary text-white rounded-3 mb-5" style="background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%) !important;">
+    <div class="text-center py-3">
+        <h1 class="display-5 fw-bold mb-3">
+            <i class="bi bi-shop me-3"></i>Chào mừng đến @(setting?.WebsiteName ?? "ShopWeb")!
+        </h1>
+        <p class="lead mb-4">@(setting?.Slogan ?? "Khám phá hàng ngàn sản phẩm chất lượng với giá tốt nhất.")</p>
+        <a asp-controller="Shop" asp-action="Index" class="btn btn-light btn-lg px-5 fw-bold">
+            <i class="bi bi-grid me-2"></i>Xem sản phẩm
+        </a>
+    </div>
+</section>
+
+<!-- Danh mục -->
+@if (ViewBag.Categories != null)
+{
+    <section class="mb-5">
+        <h4 class="fw-bold mb-3"><i class="bi bi-tags me-2 text-primary"></i>Danh mục sản phẩm</h4>
+        <div class="d-flex flex-wrap gap-2">
+            @foreach (var cat in (List<ShopWebApp.Models.Category>)ViewBag.Categories)
+            {
+                <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@cat.Id"
+                   class="btn btn-outline-primary">
+                    @cat.Name
+                </a>
+            }
+        </div>
+    </section>
+}
+
+<!-- Sản phẩm nổi bật -->
+<section>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="fw-bold mb-0"><i class="bi bi-star me-2 text-warning"></i>Sản phẩm nổi bật</h4>
+        <a asp-controller="Shop" asp-action="Index" class="btn btn-sm btn-outline-primary">
+            Xem tất cả <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+    </div>
+
+    <div class="row g-4">
+        @if (!Model.Any())
+        {
+            <div class="col-12 text-center text-muted py-5">
+                <i class="bi bi-box-seam fs-1 d-block mb-3 opacity-50"></i>
+                Chưa có sản phẩm nào. <a asp-area="Admin" asp-controller="Product" asp-action="Create">Thêm sản phẩm</a>
+            </div>
+        }
+        @foreach (var product in Model)
+        {
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id">
+                        @if (!string.IsNullOrEmpty(product.ImageUrl))
+                        {
+                            <img src="@product.ImageUrl" class="card-img-top product-img" alt="@product.Name" />
+                        }
+                        else
+                        {
+                            <div class="card-img-top product-img d-flex align-items-center justify-content-center bg-light">
+                                <i class="bi bi-image fs-1 text-muted"></i>
+                            </div>
+                        }
+                    </a>
+                    <div class="card-body">
+                        <p class="text-muted small mb-1">@product.Category?.Name</p>
+                        <h6 class="card-title fw-semibold">
+                            <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id"
+                               class="text-decoration-none text-dark">
+                                @product.Name
+                            </a>
+                        </h6>
+                        <p class="text-primary fw-bold mb-2">@string.Format("{0:N0} ₫", product.Price)</p>
+                        @if (product.Stock > 0)
+                        {
+                            <span class="badge bg-success-subtle text-success">Còn hàng</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger-subtle text-danger">Hết hàng</span>
+                        }
+                    </div>
+                    <div class="card-footer bg-transparent border-0 pb-3">
+                        @if (requireLogin && User.Identity?.IsAuthenticated != true)
+                        {
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary btn-sm w-100">
+                                <i class="bi bi-box-arrow-in-right me-1"></i>Đăng nhập để mua
+                            </a>
+                        }
+                        else
+                        {
+                            <form asp-controller="Cart" asp-action="Add" method="post" class="d-grid">
+                                <input type="hidden" name="productId" value="@product.Id" />
+                                <button type="submit" class="btn btn-primary btn-sm" @(product.Stock <= 0 ? "disabled" : "")>
+                                    <i class="bi bi-cart-plus me-1"></i>Thêm vào giỏ
+                                </button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Styles {
+    <style>
+        .product-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.12) !important; }
+        .product-img { height: 200px; object-fit: contain; background-color: #f8f9fa; }
+    </style>
+}

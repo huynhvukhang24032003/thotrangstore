@@ -1,0 +1,124 @@
+@model ShopWebApp.Models.SystemSetting
+
+@{
+    ViewData["Title"] = "Cài đặt hệ thống";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Cài đặt chung</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form asp-action="Update" asp-controller="Setting" asp-area="Admin" method="post" enctype="multipart/form-data">
+                <div class="card-body">
+                    @if (TempData["SettingSuccess"] != null)
+                    {
+                        <div class="alert alert-success mt-2">
+                            @TempData["SettingSuccess"]
+                        </div>
+                    }
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="WebsiteName" class="control-label"></label>
+                        <input asp-for="WebsiteName" class="form-control" placeholder="Nhập tên website" />
+                        <span asp-validation-for="WebsiteName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Slogan" class="control-label"></label>
+                        <input asp-for="Slogan" class="form-control" placeholder="Slogan website" />
+                        <span asp-validation-for="Slogan" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Logo Website</label>
+                        @if (!string.IsNullOrEmpty(Model.LogoUrl))
+                        {
+                            <div class="mb-2">
+                                <img src="@Model.LogoUrl" alt="Logo" style="max-height: 100px; max-width: 200px;" />
+                            </div>
+                        }
+                        <div class="custom-file">
+                            <input type="file" name="LogoFile" class="custom-file-input" id="customFile" accept="image/*">
+                            <label class="custom-file-label" for="customFile">Chọn file ảnh...</label>
+                        </div>
+                        <small class="form-text text-muted">Tải lên một ảnh mới để thay đổi logo hiện tại.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Hotline" class="control-label"></label>
+                        <input asp-for="Hotline" class="form-control" placeholder="Ví dụ: 0988.xxx.xxx" />
+                        <span asp-validation-for="Hotline" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ContactEmail" class="control-label"></label>
+                        <input asp-for="ContactEmail" class="form-control" placeholder="Email liên hệ, hỗ trợ" />
+                        <span asp-validation-for="ContactEmail" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control" placeholder="Địa chỉ chi nhánh chính" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SeoDescription" class="control-label"></label>
+                        <textarea asp-for="SeoDescription" class="form-control" rows="3" placeholder="Mô tả sẽ hiển thị trên Google Search"></textarea>
+                        <span asp-validation-for="SeoDescription" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SeoKeywords" class="control-label"></label>
+                        <input asp-for="SeoKeywords" class="form-control" placeholder="Các từ khóa SEO (keywords)" />
+                        <span asp-validation-for="SeoKeywords" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="EnableRegistration" /> @Html.DisplayNameFor(model => model.EnableRegistration)
+                        </label>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="EnableOrdering" /> @Html.DisplayNameFor(model => model.EnableOrdering)
+                        </label>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="RequireLoginToPurchase" /> @Html.DisplayNameFor(model => model.RequireLoginToPurchase)
+                        </label>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Lưu cấu hình</button>
+                    <a asp-action="Index" asp-controller="Dashboard" asp-area="Admin" class="btn btn-default float-right">Quay lại</a>
+                </div>
+            </form>
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        // Hiển thị tên file khi chọn file upload
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}

@@ -1,0 +1,224 @@
+@using ShopWebApp.Data
+@inject AppDbContext _context
+@model ShopWebApp.ViewModels.ProductListViewModel
+@{
+    ViewData["Title"] = "Cửa hàng";
+    if (Model.CategoryId.HasValue)
+    {
+        var selectedCat = Model.Categories.FirstOrDefault(c => c.Id == Model.CategoryId);
+        if (selectedCat != null)
+        {
+            ViewData["Title"] = selectedCat.Name;
+            ViewData["SeoDescription"] = $"Danh sách sản phẩm thuộc danh mục {selectedCat.Name}";
+            ViewData["SeoKeywords"] = $"{selectedCat.Name}, mua {selectedCat.Name}";
+        }
+    }
+    else if (!string.IsNullOrEmpty(Model.SearchQuery))
+    {
+        ViewData["Title"] = $"Tìm kiếm: {Model.SearchQuery}";
+        ViewData["SeoDescription"] = $"Kết quả tìm kiếm cho {Model.SearchQuery}";
+        ViewData["SeoKeywords"] = Model.SearchQuery;
+    }
+
+    var sort = ViewBag.Sort as string;
+    var setting = _context.SystemSettings.FirstOrDefault();
+    bool requireLogin = setting?.RequireLoginToPurchase ?? true;
+}
+
+<div class="row g-4">
+    <!-- Sidebar: Bộ lọc -->
+    <div class="col-lg-3">
+        <div class="card border-0 shadow-sm sticky-top" style="top: 1rem;">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3"><i class="bi bi-funnel me-2 text-primary"></i>Bộ lọc</h5>
+
+                <!-- Tìm kiếm -->
+                <form method="get" asp-controller="Shop" asp-action="Index" id="filterForm">
+                    <input type="hidden" name="sort" value="@sort" />
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Tìm kiếm</label>
+                        <div class="input-group">
+                            <input type="text" name="search" value="@Model.SearchQuery"
+                                   class="form-control" placeholder="Tên sản phẩm..." />
+                            <button class="btn btn-primary" type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Danh mục -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small">Danh mục</label>
+                        <div class="d-flex flex-column gap-1">
+                            <a asp-controller="Shop" asp-action="Index"
+                               asp-route-search="@Model.SearchQuery"
+                               asp-route-sort="@sort"
+                               class="btn btn-sm @(Model.CategoryId == null ? "btn-primary" : "btn-outline-secondary") text-start">
+                                <i class="bi bi-grid me-1"></i>Tất cả
+                            </a>
+                            @foreach (var cat in Model.Categories)
+                            {
+                                <a asp-controller="Shop" asp-action="Index"
+                                   asp-route-categoryId="@cat.Id"
+                                   asp-route-search="@Model.SearchQuery"
+                                   asp-route-sort="@sort"
+                                   class="btn btn-sm @(Model.CategoryId == cat.Id ? "btn-primary" : "btn-outline-secondary") text-start">
+                                    @cat.Name
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main: Sản phẩm -->
+    <div class="col-lg-9">
+        <!-- Thanh tiêu đề + sắp xếp -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+            <div>
+                <h5 class="fw-bold mb-0">
+                    @if (!string.IsNullOrEmpty(Model.SearchQuery))
+                    {
+                        <span>Kết quả cho "<span class="text-primary">@Model.SearchQuery</span>"</span>
+                    }
+                    else if (Model.CategoryId.HasValue)
+                    {
+                        var selectedCat = Model.Categories.FirstOrDefault(c => c.Id == Model.CategoryId);
+                        <span>@(selectedCat?.Name ?? "Danh mục")</span>
+                    }
+                    else
+                    {
+                        <span>Tất cả sản phẩm</span>
+                    }
+                </h5>
+                <small class="text-muted">@Model.Products.Count sản phẩm</small>
+            </div>
+            <div class="d-flex gap-2">
+                <a asp-controller="Shop" asp-action="Index"
+                   asp-route-categoryId="@Model.CategoryId"
+                   asp-route-search="@Model.SearchQuery"
+                   asp-route-sort="newest"
+                   class="btn btn-sm @(sort == "newest" || sort == null ? "btn-primary" : "btn-outline-secondary")">
+                    Mới nhất
+                </a>
+                <a asp-controller="Shop" asp-action="Index"
+                   asp-route-categoryId="@Model.CategoryId"
+                   asp-route-search="@Model.SearchQuery"
+                   asp-route-sort="price-asc"
+                   class="btn btn-sm @(sort == "price-asc" ? "btn-primary" : "btn-outline-secondary")">
+                    Giá tăng
+                </a>
+                <a asp-controller="Shop" asp-action="Index"
+                   asp-route-categoryId="@Model.CategoryId"
+                   asp-route-search="@Model.SearchQuery"
+                   asp-route-sort="price-desc"
+                   class="btn btn-sm @(sort == "price-desc" ? "btn-primary" : "btn-outline-secondary")">
+                    Giá giảm
+                </a>
+            </div>
+        </div>
+
+        <!-- Lưới sản phẩm -->
+        @if (!Model.Products.Any())
+        {
+            <div class="text-center text-muted py-5">
+                <i class="bi bi-box-seam fs-1 d-block mb-3 opacity-50"></i>
+                <p class="mb-2">Không tìm thấy sản phẩm nào.</p>
+                <a asp-controller="Shop" asp-action="Index" class="btn btn-outline-primary">Xem tất cả</a>
+            </div>
+        }
+        else
+        {
+            <div class="row g-3">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-6 col-md-4">
+                        <div class="card h-100 border-0 shadow-sm product-card">
+                            <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id">
+                                @if (!string.IsNullOrEmpty(product.ImageUrl))
+                                {
+                                    <img src="@product.ImageUrl" class="card-img-top product-img" alt="@product.Name" />
+                                }
+                                else
+                                {
+                                    <div class="card-img-top product-img d-flex align-items-center justify-content-center bg-light">
+                                        <i class="bi bi-image fs-1 text-muted"></i>
+                                    </div>
+                                }
+                            </a>
+                            <div class="card-body p-3">
+                                <p class="text-muted small mb-1">@product.Category?.Name</p>
+                                <h6 class="card-title fw-semibold mb-1 lh-sm">
+                                    <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id"
+                                       class="text-decoration-none text-dark stretched-link-title">
+                                        @product.Name
+                                    </a>
+                                </h6>
+                                <p class="text-primary fw-bold mb-2">@string.Format("{0:N0} ₫", product.Price)</p>
+                                @if (product.Stock > 0)
+                                {
+                                    <span class="badge bg-success-subtle text-success">Còn hàng</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger-subtle text-danger">Hết hàng</span>
+                                }
+                            </div>
+                            <div class="card-footer bg-transparent border-0 pb-3 px-3">
+                                @if (requireLogin && User.Identity?.IsAuthenticated != true)
+                                {
+                                    <a asp-controller="Account" asp-action="Login"
+                                       class="btn btn-outline-primary btn-sm w-100">
+                                        <i class="bi bi-box-arrow-in-right me-1"></i>Đăng nhập để mua
+                                    </a>
+                                }
+                                else
+                                {
+                                    <form asp-controller="Cart" asp-action="Add" method="post" class="d-grid">
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <button type="submit" class="btn btn-primary btn-sm"
+                                                @(product.Stock <= 0 ? "disabled" : "")>
+                                            <i class="bi bi-cart-plus me-1"></i>Thêm vào giỏ
+                                        </button>
+                                    </form>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Phân trang -->
+            @if (Model.TotalPages > 1)
+            {
+                <nav class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                <a class="page-link"
+                                   asp-controller="Shop" asp-action="Index"
+                                   asp-route-page="@i"
+                                   asp-route-categoryId="@Model.CategoryId"
+                                   asp-route-search="@Model.SearchQuery"
+                                   asp-route-sort="@sort">
+                                    @i
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            }
+        }
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .product-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.12) !important; }
+        .product-img { height: 180px; object-fit: contain; background-color: #f8f9fa; }
+    </style>
+}

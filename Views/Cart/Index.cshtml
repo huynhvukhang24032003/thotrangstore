@@ -1,0 +1,119 @@
+@model List<ShopWebApp.Models.CartItem>
+@{
+    ViewData["Title"] = "Giỏ hàng";
+    var total = Model.Sum(ci => (ci.Product?.Price ?? 0) * ci.Quantity);
+}
+
+<h3 class="fw-bold mb-4"><i class="bi bi-cart3 me-2 text-primary"></i>Giỏ hàng của bạn</h3>
+
+@if (!Model.Any())
+{
+    <div class="text-center py-5">
+        <i class="bi bi-cart-x fs-1 text-muted d-block mb-3"></i>
+        <h5 class="text-muted">Giỏ hàng trống</h5>
+        <a asp-controller="Shop" asp-action="Index" class="btn btn-primary mt-3">
+            <i class="bi bi-grid me-2"></i>Tiếp tục mua sắm
+        </a>
+    </div>
+}
+else
+{
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th colspan="2">Sản phẩm</th>
+                                <th>Đơn giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td width="70">
+                                        @if (!string.IsNullOrEmpty(item.Product?.ImageUrl))
+                                        {
+                                            <img src="@item.Product.ImageUrl" width="60" height="60"
+                                                 class="rounded object-fit-cover" />
+                                        }
+                                        else
+                                        {
+                                            <div class="bg-light rounded d-flex align-items-center justify-content-center"
+                                                 style="width:60px;height:60px">
+                                                <i class="bi bi-image text-muted"></i>
+                                            </div>
+                                        }
+                                    </td>
+                                    <td>
+                                        <span class="fw-semibold">@item.Product?.Name</span>
+                                        <br /><small class="text-muted">@item.Product?.Category?.Name</small>
+                                    </td>
+                                    <td class="text-primary fw-semibold">
+                                        @string.Format("{0:N0} ₫", item.Product?.Price)
+                                    </td>
+                                    <td>
+                                        <form asp-action="Update" method="post" class="d-flex align-items-center gap-1">
+                                            <input type="hidden" name="cartItemId" value="@item.Id" />
+                                            <button type="submit" name="quantity" value="@(item.Quantity - 1)"
+                                                    class="btn btn-sm btn-outline-secondary">-</button>
+                                            <span class="px-2 fw-bold">@item.Quantity</span>
+                                            <button type="submit" name="quantity" value="@(item.Quantity + 1)"
+                                                    class="btn btn-sm btn-outline-secondary">+</button>
+                                        </form>
+                                    </td>
+                                    <td class="fw-bold text-primary">
+                                        @string.Format("{0:N0} ₫", (item.Product?.Price ?? 0) * item.Quantity)
+                                    </td>
+                                    <td>
+                                        <form asp-action="Remove" method="post"
+                                              onsubmit="return confirm('Xóa sản phẩm này?')">
+                                            <input type="hidden" name="cartItemId" value="@item.Id" />
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <a asp-controller="Shop" asp-action="Index" class="btn btn-outline-secondary mt-3">
+                <i class="bi bi-arrow-left me-1"></i>Tiếp tục mua sắm
+            </a>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3">Tóm tắt đơn hàng</h5>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Tạm tính</span>
+                        <span>@string.Format("{0:N0} ₫", total)</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Phí vận chuyển</span>
+                        <span class="text-success">Miễn phí</span>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-between fw-bold fs-5 mb-4">
+                        <span>Tổng cộng</span>
+                        <span class="text-primary">@string.Format("{0:N0} ₫", total)</span>
+                    </div>
+                    <div class="d-grid">
+                        <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary btn-lg">
+                            <i class="bi bi-bag-check me-2"></i>Đặt hàng
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
